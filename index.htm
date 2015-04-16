@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>五十音學習系統</title>
+		<script type="text/javascript" src="./array.js"></script>
+		<script type="text/javascript" src="./function.js"></script>
+	</head>
+	<body style="text-align:center;">
+		<div id="print" style="font-size:196px;"></div>
+		<div id="answer"></div>
+		<input id="input" type="input" maxlength="3" onKeyDown="keyin(event.keyCode);" />
+		<br />
+		<input id="seion" type="checkbox" value="seion" checked>清音　
+		<input id="dakuon" type="checkbox" value="dakuon">濁音　
+		<input id="handakuon" type="checkbox" value="handakuon">半濁音
+		<br />
+		<input id="hiragana" type="checkbox" value="hiragana" checked>平假名
+		<input id="katakana" type="checkbox" value="katakana">片假名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="button" value="確定" onclick="print();">
+		<script>
+			print();
+		</script>
+	</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="learnJPApp">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>Learn-JP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/css/materialize.min.css">
+    <link rel="stylesheet" href="main.css">
+    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script src="main.js"></script>
+</head>
+
+<body ng-controller="LearnJPController">
+    <nav>
+        <div class="nav-wrapper green">
+            <a href="#" class="brand-logo center" ng-click="randQuestion()">Learn-JP</a>
+            <a href="#" data-activates="mobile-demo" class="right button-collapse"><i class="mdi-action-settings"></i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="javascript:$('.button-collapse').sideNav('show');"><i class="mdi-action-settings"></i></a></li>
+            </ul>
+            <ul class="side-nav" id="mobile-demo">
+                <li>
+                    <a href="#!" ng-click="setType('hiragana')">
+                        <input name="type" type="checkbox" ng-model="hiragana" />
+                        <label>平假名</label>
+                    </a>
+                </li>
+                <li>
+                    <a href="#!" ng-click="setType('katakana')">
+                        <input name="type" type="checkbox" ng-model="katakana" />
+                        <label>片假名</label>
+                    </a>
+                </li>
+                <li>
+                    <a href="#!" ng-click="setType('romaji')">
+                        <input name="type" type="checkbox" ng-model="romaji" />
+                        <label>羅馬拼音</label>
+                    </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="#!" ng-click="setSpell('seion')">
+                        <input name="type" type="checkbox" ng-model="seion" />
+                        <label>清音</label>
+                    </a>
+                </li>
+                <li>
+                    <a href="#!" ng-click="setSpell('dakuon')">
+                        <input name="type" type="checkbox" ng-model="dakuon" />
+                        <label>濁音</label>
+                    </a>
+                </li>
+                <li>
+                    <a href="#!" ng-click="setSpell('handakuon')">
+                        <input name="type" type="checkbox" ng-model="handakuon" />
+                        <label>半濁音</label>
+                    </a>
+                </li>
+                <li>
+                    <a href="#!" ng-click="setSpell('youon')">
+                        <input name="type" type="checkbox" ng-model="youon" />
+                        <label>拗音</label>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12">
+                <div class="display" ng-bind="question.display">#</div>
+            </div>
+            <div class="col s12 m12 answers">
+                <div class="row">
+                    <div class="col s6"><a class="btn btn-large green waves-effect waves-light answer" ng-bind="answers[0]" ng-click="checkAnswer(answers[0])">#</a></div>
+                    <div class="col s6"><a class="btn btn-large green waves-effect waves-light answer" ng-bind="answers[1]" ng-click="checkAnswer(answers[1])">#</a></div>
+                    <div class="col s6"><a class="btn btn-large green waves-effect waves-light answer" ng-bind="answers[2]" ng-click="checkAnswer(answers[2])">#</a></div>
+                    <div class="col s6"><a class="btn btn-large green waves-effect waves-light answer" ng-bind="answers[3]" ng-click="checkAnswer(answers[3])">#</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

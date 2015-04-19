@@ -1,0 +1,14 @@
+.display {
+    font-size: 108pt;
+    text-align: center;
+}
+
+.answers {
+	padding: 15px;
+}
+.answer {
+    font-size: 30pt;
+    width: 100%;
+    margin-top: 10px;
+    text-transform: none;
+}

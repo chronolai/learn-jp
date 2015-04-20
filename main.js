@@ -1,11 +1,11 @@
 /*
-	平　假 - ひらがな(hiragana)
-	片　假 - かたかな(katakana)
+    平　假 - ひらがな(hiragana)
+    片　假 - かたかな(katakana)
 
-	清　音 - せいおん(seion)
-	濁　音 - だくおん(dakuon)
-	半濁音 - はんだくおん(handakuon)
-	拗　音 - ようおん(youon)
+    清　音 - せいおん(seion)
+    濁　音 - だくおん(dakuon)
+    半濁音 - はんだくおん(handakuon)
+    拗　音 - ようおん(youon)
 */
 
 angular.module('learnJPApp', [])
@@ -14,6 +14,7 @@ angular.module('learnJPApp', [])
         $scope.setOption = function(name, count) {
             if (count > 1 || (count >= 1 && $scope[name] == false)) {
                 $scope[name] = !$scope[name];
+                $scope.saveStorage();
             } else {
                 Materialize.toast('At least one!', 3000);
             };
@@ -28,23 +29,33 @@ angular.module('learnJPApp', [])
             $scope.setOption(name, count);
         };
         $scope.checkAnswer = function(answer) {
-        	if (answer === $scope.question.answer) {
-        		$scope.randQuestion();
-        	} else {
+            if (answer === $scope.question.answer) {
+                $scope.randQuestion();
+            } else {
                 Materialize.toast('Wrong answer!', 3000);
-        	};
+            };
         };
 
         // init
-        $scope.initCheckbox = function() {
-            $scope.hiragana = true;
-            $scope.katakana = false;
-            $scope.romaji = false;
+        $scope.loadStorage = function() {
+            $scope.hiragana = (window.localStorage['hiragana'] === 'true') || true;
+            $scope.katakana = (window.localStorage['katakana'] === 'true') || false;
+            $scope.romaji = (window.localStorage['romaji'] === 'true') || false;
 
-            $scope.seion = true;
-            $scope.dakuon = false;
-            $scope.handakuon = false;
-            $scope.youon = false;
+            $scope.seion = (window.localStorage['seion'] === 'true') || true;
+            $scope.dakuon = (window.localStorage['dakuon'] === 'true') || false;
+            $scope.handakuon = (window.localStorage['handakuon'] === 'true') || false;
+            $scope.youon = (window.localStorage['youon'] === 'true') || false;
+        };
+        $scope.saveStorage = function() {
+            window.localStorage['hiragana'] = $scope.hiragana;
+            window.localStorage['katakana'] = $scope.katakana;
+            window.localStorage['romaji'] = $scope.romaji;
+
+            window.localStorage['seion'] = $scope.seion;
+            window.localStorage['dakuon'] = $scope.dakuon;
+            window.localStorage['handakuon'] = $scope.handakuon;
+            window.localStorage['youon'] = $scope.youon;
         };
         $scope.randQuestion = function() {
             var random_list = [];
@@ -81,9 +92,9 @@ angular.module('learnJPApp', [])
             $scope.question.display = $scope.question[type_list[0]];
 
             if (type_list[0] == 'romaji') {
-            	answer_type = ['hiragana', 'katakana'];
+                answer_type = ['hiragana', 'katakana'];
             } else {
-            	answer_type = ['romaji']
+                answer_type = ['romaji']
             };
             answer_type = shuffle(answer_type);
 
@@ -111,7 +122,7 @@ angular.module('learnJPApp', [])
                         katakana: row[3],
                     });
                 });
-                $scope.initCheckbox();
+                $scope.loadStorage();
                 $scope.randQuestion();
             })
             .error(function(data, status, error, config) {
